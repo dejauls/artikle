@@ -32,7 +32,7 @@
                 class="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-gray-800 via-gray-800/60 to-transparent">
                 <nav
                     class="fixed z-50 bg-gradient-to-b from-black via-gray-800/60 to-transparent md:bg-transparent flex p-5 md:p-20 justify-between items-center w-full gap-5">
-                    <label for="check-mobilenav" class="flex flex-col cursor-pointer md:hidden">
+                    <label for="check-mobilenav" class="flex flex-col min-w-10 max-w-20 cursor-pointer md:hidden">
                         <input type="checkbox" id="check-mobilenav" class="peer hidden" />
                         <span
                             class="bg-stone-100 rounded-[10px] h-[3.5px] my-[3px] transition-transform duration-[0.4s] ease-custom w-1/2 peer-checked:origin-bottom peer-checked:rotate-45 peer-checked:translate-x-[8px]"></span>
@@ -99,19 +99,21 @@
         </section>
 
         <div class="bg-gradient-to-t from-black via-gray-800 to-gray-800 p-5 md:p-20">
-            <div class="mx-auto grid gap-14 lg:grid-cols-4 relative z-10 -mt-96 p-10">
+            <div class="mx-auto grid gap-5 lg:grid-cols-4 relative z-10 -mt-96 p-10">
                 {% for article in articles %}
-                <a class="" href="{{ url_for('article_detail', slug=article['slug']) }}">
-                    <div class="w-full mb-5 h-48 overflow-hidden flex justify-center items-center">
+                <a class="overflow-hidden" href="{{ url_for('article_detail', slug=article['slug']) }}">
+                    <div class="w-full h-48 min-h-fit overflow-hidden flex justify-center items-center">
                         <img src="{{ article.image }}" alt="" class="w-full">
                     </div>
                     <div class="mb-3">
-                        <h6 class="line-clamp-2 mb-2 text-stone-200 font-medium text-2xl">{{ article.title }}</h6>
-                        <p class="line-clamp-3 text-stone-400">{{ article.content }}</p>
+                        <h6 class="line-clamp-2 text-stone-200 font-medium text-base md:text-2xl">{{ article.title
+                            }}
+                        </h6>
+                        <p class="line-clamp-3 text-stone-400 text-sm md:text-lg">{{ article.content }}</p>
                     </div>
                     <div class="flex gap-5 items-center">
                         <img src="https://avatar.iran.liara.run/public/1" class="size-8 rounded-full" alt="">
-                        <div class="flex flex-col">
+                        <div class="flex flex-col gap-1">
                             <div class="text-slate-200 text-sm">{{ article.author }}</div>
                             <div class="text-sm text-stone-400 font-light">{{ article.date }}</div>
                         </div>
@@ -432,9 +434,7 @@
 
 
     <script src="https://unpkg.com/feather-icons"></script>
-    <script src="./dist/js/mouse.js"></script>
-    <script src="./dist/js/video.js"></script>
-    <script src="./dist/js/hitung.js"></script>
+    <!-- <script src="./dist/js/mouse.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.0.9/index.min.js"></script>
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
@@ -442,7 +442,7 @@
         src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="./dist/js/particle4.js"></script>
+    <!-- <script src="./dist/js/particle4.js"></script> -->
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -478,42 +478,6 @@
             typedElements.forEach(element => {
                 observer.observe(element);
             });
-
-
-
-            const splide = new Splide('.splide', {
-                type: 'loop',
-                drag: 'free',
-                focus: 'center',
-                perPage: 6,
-                autoScroll: {
-                    speed: 0.9,
-                },
-                classes: {
-                    pagination: 'hidden',
-                    arrow: 'flex items-center justify-center bg-white border border-black rounded-full cursor-pointer h-8 opacity-70 p-2 absolute top-1/2 transform -translate-y-1/2 w-8 z-10',
-                },
-                breakpoints: {
-                    640: {
-                        perPage: 2,
-                    },
-                    768: {
-                        perPage: 3,
-                    },
-                    1024: {
-                        perPage: 4,
-                    },
-                    1280: {
-                        perPage: 6,
-                    },
-                },
-            });
-
-            splide.mount(window.splide.Extensions);
-
-
-
-            // const countUp = new CountUp('bata-terjual', 5234);
         });
 
     </script>
