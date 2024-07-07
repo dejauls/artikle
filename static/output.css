@@ -3196,6 +3196,10 @@ video {
     margin-top: 10rem;
   }
 
+  .md\:mt-20 {
+    margin-top: 5rem;
+  }
+
   .md\:flex {
     display: flex;
   }
@@ -3278,6 +3282,10 @@ video {
   .md\:px-20 {
     padding-left: 5rem;
     padding-right: 5rem;
+  }
+
+  .md\:pt-40 {
+    padding-top: 10rem;
   }
 
   .md\:text-\[56px\] {
