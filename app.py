@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from slugify import slugify
+from markupsafe import Markup
 
 app = Flask(__name__)
 
@@ -10,6 +11,12 @@ db = client['db-artikel']
 collection = db['artikel']
 
 PER_PAGE = 20
+
+@app.template_filter('render_html')
+def render_html(content):
+    return Markup(content)
+
+app.jinja_env.filters['render_html'] = render_html
 
 
 @app.context_processor
@@ -38,6 +45,7 @@ def add_article():
         title = request.form['title']
         content = request.form['content']
         image = request.form['image']
+        source = request.form['source']
         author = request.form['author']
         date = request.form['date']
         category = request.form['category']
@@ -52,6 +60,7 @@ def add_article():
             "slug": slug,
             "content": content,
             "image": image,
+            "source": source,
             "author": author,
             "date": date,
             "category": category,
