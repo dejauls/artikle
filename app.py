@@ -18,12 +18,35 @@ def render_html(content):
 
 app.jinja_env.filters['render_html'] = render_html
 
-
 @app.context_processor
 def utility_processor():
     return dict(str=str)
 
+def trim_content(content, limit=300):
+    return content if len(content) <= limit else content[:limit] + '...'
+
 @app.route('/')
+def homes():
+    articles = list(collection.find().limit(6))
+    for article in articles:
+        article['content'] = trim_content(article['content'])
+    return render_template('index.html', articles=articles)
+
+@app.route('/about')
+def about():
+    articles = list(collection.find().limit(6))
+    for article in articles:
+        article['content'] = trim_content(article['content'])
+    return render_template('about.html', articles=articles)
+
+@app.route('/proyek')
+def proyek():
+    articles = list(collection.find().limit(6))
+    for article in articles:
+        article['content'] = trim_content(article['content'])
+    return render_template('proyek.html', articles=articles)
+
+@app.route('/artikel')
 @app.route('/page/<int:page>')
 def home(page=1):
     articles = list(collection.find().skip((page - 1) * PER_PAGE).limit(PER_PAGE))
@@ -78,7 +101,10 @@ def article_detail(slug):
     article = collection.find_one({'slug': slug})
     if not article:
         return redirect(url_for('home'))
-    return render_template('detail-artikel.html', article=article)
+    
+    other_articles = list(collection.find({'slug': {'$ne': slug}}).limit(4))
+    
+    return render_template('detail-artikel.html', article=article, articles=other_articles)
 
 if __name__ == '__main__':
     app.run(debug=True)

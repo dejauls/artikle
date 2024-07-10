@@ -43,22 +43,22 @@
                     </label>
                     <ul class="hidden md:flex justify-start gap-5 lg:gap-10 text-xl text-stone-100">
                         <li class="relative group">
-                            <a href="index.html" class="font-semibold duration-500">HOME</a>
+                            <a href="/" class="font-semibold duration-500">HOME</a>
                             <div class="absolute -bottom-2 left-0 w-0 duration-500 group-hover:w-full h-1 bg-stone-100">
                             </div>
                         </li>
                         <li class="relative group">
-                            <a href="/about.html" class="font-semibold duration-500">ABOUT</a>
+                            <a href="/about" class="font-semibold duration-500">ABOUT</a>
                             <div class="absolute -bottom-2 left-0 w-0 duration-500 group-hover:w-full h-1 bg-stone-100">
                             </div>
                         </li>
                         <li class="relative group">
-                            <a href="/proyek.html" class="font-semibold duration-500">PROYEK</a>
+                            <a href="/proyek" class="font-semibold duration-500">PROYEK</a>
                             <div class="absolute -bottom-2 left-0 w-0 duration-500 group-hover:w-full h-1 bg-stone-100">
                             </div>
                         </li>
                         <li class="relative group">
-                            <a href="/artikel.html" class="font-semibold duration-500">ARTIKEL</a>
+                            <a href="/artikel" class="font-semibold duration-500">ARTIKEL</a>
                             <div class="absolute -bottom-2 left-0 w-0 duration-500 group-hover:w-full h-1 bg-stone-100">
                             </div>
                         </li>
@@ -70,35 +70,37 @@
                     </ul>
                     <div id="brand"
                         class="text-3xl font-bold text-stone-900 transform transition duration-300 ease-in-out hover:scale-110">
-                        <a href="index.html" class="flex items-center">
+                        <a href="/" class="flex items-center">
                             <img src="/static/img/logobar.png" alt="Reclea Brick Logo"
                                 class="max-w-20 sm:max-w-32 shadow-lg" />
                             <span class="sr-only">Reclea Brick</span>
                         </a>
                     </div>
                 </nav>
-                <div class="flex justify-center items-center mt-40">
+                <div class="flex justify-center items-center mt-36 mb-4">
                     <h2 class="text-stone-50 text-left font-play-serif font-bold text-4xl lg:text-[80px] md:text-[64px] sm:text-[64px] leading-tight"
                         data-aos="zoom-y-out" data-aos-delay="150">
                         <span>ARTIKEL</span>
                     </h2>
                 </div>
-                <div class="mb-4 text-center mt-28 md:mt-12 ">
+                <div class="flex flex-wrap justify-center mb-4 text-center mt-12 gap-2">
                     <a href="{{ url_for('home') }}"
                         class="inline-block px-4 py-2 bg-zinc-400 text-white rounded">All</a>
                     <a href="{{ url_for('category', category_name='otomotif') }}"
-                        class="inline-block px-4 py-2 bg-zinc-400 text-white rounded">Otomotif</a>
-                    <a href="{{ url_for('category', category_name='konstruksi') }}"
                         class="inline-block px-4 py-2 bg-zinc-400 text-white rounded">Konstruksi</a>
-                    <a href="{{ url_for('category', category_name='interior') }}"
+                    <a href="{{ url_for('category', category_name='konstruksi') }}"
                         class="inline-block px-4 py-2 bg-zinc-400 text-white rounded">Interior</a>
+                    <a href="{{ url_for('category', category_name='interior') }}"
+                        class="inline-block px-4 py-2 bg-zinc-400 text-white rounded">Exterior</a>
                     <a href="{{ url_for('category', category_name='alat-alat-unik') }}"
                         class="inline-block px-4 py-2 bg-zinc-400 text-white rounded">Alat-alat Unik</a>
+                        <a href="{{ url_for('category', category_name='interior') }}"
+                        class="inline-block px-4 py-2 bg-zinc-400 text-white rounded">Design</a>    
                 </div>
             </div>
         </section>
 
-        <div class="bg-gradient-to-t from-black via-gray-800 to-gray-800 p-5 md:p-20 md:pt-40">
+        <div class="relative bg-gradient-to-t from-black via-gray-800 to-gray-800 p-5 md:p-20 md:pt-40">
             <div class="mx-auto grid gap-5 lg:grid-cols-4 relative z-10 -mt-96 p-2 md:p-10">
                 {% for article in articles %}
                 <a class="overflow-hidden" href="{{ url_for('article_detail', slug=article['slug']) }}">
@@ -106,14 +108,14 @@
                         <img src="{{ article.image }}" alt="" class="w-full">
                     </div>
                     <div class="mb-3">
-                        <h6 class="line-clamp-2 text-stone-100 font-medium text-base md:text-3xl">{{ article.title
+                        <h6 class="line-clamp-2 text-stone-100 mt-1 font-bold text-2xl md:text-3xl">{{ article.title
                             }}
                         </h6>
-                        <div class="line-clamp-3 text-stone-400 mt-3 text-sm md:text-lg">
+                        <div class="line-clamp-3 text-stone-300 text-sm md:text-lg">
                             {{ article.content | render_html }}
                         </div>                          
                     </div>
-                    <div class="flex gap-5 items-center">
+                    <div class="flex gap-5 items-center mb-5">
                         <img src="https://avatar.iran.liara.run/public/1" class="size-8 rounded-full" alt="">
                         <div class="flex flex-col gap-1">
                             <div class="text-slate-200 text-sm">{{ article.author }}</div>
@@ -348,7 +350,7 @@
             </div>
             <ul class="flex flex-col gap-5 p-5">
                 <li href="javascript:void(0)" class="relative group">
-                    <a href="index.html"
+                    <a href="/"
                         class="font-semibold text-stone-300 group-hover:text-stone-200 text-xl duration-300">
                         Home
                     </a>
@@ -357,7 +359,7 @@
                     </div>
                 </li>
                 <li href="javascript:void(0)" class="relative group">
-                    <a href="about.html"
+                    <a href="/about"
                         class="font-semibold text-stone-300 group-hover:text-stone-200 text-xl duration-300">
                         About
                     </a>
@@ -366,7 +368,7 @@
                     </div>
                 </li>
                 <li href="javascript:void(0)" class="relative group">
-                    <a href="proyek.html"
+                    <a href="/proyek"
                         class="font-semibold text-stone-300 group-hover:text-stone-200 text-xl duration-300">
                         Proyek
                     </a>
@@ -375,7 +377,7 @@
                     </div>
                 </li>
                 <li href="javascript:void(0)" class="relative group">
-                    <a href="artikel.html"
+                    <a href="/artikel"
                         class="font-semibold text-stone-300 group-hover:text-stone-200 text-xl duration-300">
                         Artikel
                     </a>
@@ -402,7 +404,7 @@
         </div>
     </div>
     <div id="scrollToTopBtn"
-        class="w-max-xs md:w-fit rounded-full border border-white p-3 md:p-5 fixed bottom-10 md:bottom-20 bg-black/50 left-5 scroll-to-top">
+        class="w-max-xs md:w-fit rounded-full border border-white p-3 md:p-5 fixed bottom-10 md:bottom-20 bg-black/50 left-5 scroll-to-top z-999999">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
             class="h-6 w-6 md:h-8 md:w-8 stroke-white">
             <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 18.75 7.5-7.5 7.5 7.5" />
