@@ -3038,6 +3038,54 @@ video {
   display: none;
 }
 
+.trail {
+  z-index: 99999999999999;
+}
+
+.head-trail {
+  /* className for the trail elements */
+  pointer-events: none;
+  position: absolute;
+  display: none;
+  aspect-ratio: 1 / 1;
+  width: 0.75rem;
+  --tw-translate-x: 0.25rem;
+  --tw-translate-y: 0.25rem;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y))
+    rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+    scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  border-radius: 9999px;
+  border-width: 2px;
+  --tw-border-opacity: 1;
+  border-color: rgb(242 238 230 / var(--tw-border-opacity));
+  background-color: transparent;
+}
+
+@media (min-width: 768px) {
+  .head-trail {
+    display: block;
+  }
+}
+
+.head-trail {
+  z-index: 999999999999999;
+}
+
+* {
+  cursor: none;
+}
+
+.scroll-to-top {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  visibility: hidden;
+}
+
+.scroll-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
 @media (min-width: 768px) {
   .md\:prose-base {
     font-size: 1rem;
